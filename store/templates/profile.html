@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<header id="d_header">
+    <nav>
+        <a href="/home" class="sans left_link">New Arrivals</a>
+        <a href="/cart" class="sans right-link"><img src="{% static 'icons/light bag.svg' %}" alt="Shopping Bag" style="height: 1.8rem;"></a>
+        <a href="#" class="sans right-link" id="profile"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
+        <!-- profile dropdown -->
+        <div class="dropdown" id="dd">
+            <ul>
+                <li class="dd_ele sans"><a href="/profile" class="dd_ele_link">Profile</a></li>
+                <li class="dd_ele sans"><a href="/orders" class="dd_ele_link">Orders</a></li>
+                <li class="dd_ele sans"><a href="/store" class="dd_ele_link">Favourites</a></li>
+                {% if request.session.customer %}
+                <li class="dd_ele sans" id="ls"><a href="/logout" class="dd_ele_link">Log Out</a></li>
+                {% else %}
+                <li class="dd_ele sans"><a href="/login" class="dd_ele_link">Login/Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% comment %} <div class="search__container right-link">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> {% endcomment %}
+    </nav>
+</header>
+
+
+<section class="user_data">
+    <div class="user_info">
+        <h4 class="user_info_title serif">User Details</h4>      
+        <form method="post" class="user_info_grid">
+            <div class="name_field">
+                <label for="name" class="sans">Name: <span>{{user.first_name}}</span></label><br>
+                <!-- <input type="text" id="name" name="name" placeholder="John Smith" required> -->
+            </div>
+            <div class="ph_field">
+                <label for="phone" class="sans">Phone: {{user.phone}}</label><br>
+                <!-- <input type="tel" id="phone" name="phone" placeholder="123-45-678" required> -->
+            </div>
+            <div class="email_field">
+                <label for="email" class="sans">Email: {{user.email}}</label><br>
+                <!-- <input type="email" id="email" name="email" placeholder="example@abc.com" required> -->
+            </div>
+            <div class="pass_field">
+                <!-- <label for="pwd" class="sans">Password: {{user.password}}</label><br> -->
+                <!-- <input type="password" id="pwd" name="pwd" minlength="8" required> -->
+            </div>
+            <div class="edit_btn">
+                <button class="material-icons-outlined">edit</button>
+            </div>
+        </form>
+    </div>
+
+    <!--  Section: address -->
+    <div class="add_container">
+        {% for order in orders %}
+        <div class="user_add">
+            <h4 class="serif" id="name_on_add">{{user.first_name}}</h4>
+            <p class="sans" id="add">{{orders.address}} </p>
+            <p class="sans" id="city_on_add">{{orders.phone}} Date: {{orders.date}} </p>
+            <div class="btn_container">
+                <div class="edit_btn">
+                    <button class="material-icons-outlined">edit</button>
+                </div>
+                <div class="delete_item_btn">
+                    <button class="material-icons-outlined">delete</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="user_add add_add">
+            <p class="sans"><span id="plus" class="material-icons-outlined">add</span></p>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("#profile").mouseenter(function() {
+            $('#dd').addClass('drop_hover_enter');
+        });
+        $("#dd").mouseleave(function() {
+            $('#dd').removeClass('drop_hover_enter');
+        });
+              
+    </script>
+
+{% endblock %}

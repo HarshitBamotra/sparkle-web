@@ -1,0 +1,170 @@
+<!doctype html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+    
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+   
+  <title>Sparkle</title>
+
+  <style>
+    nav{
+      background-color: white;
+    }
+    .one-edge-shadow {
+              box-shadow: 0 8px 2px -5px rgb(246, 245, 245);
+}
+.display-8{
+  font-weight: 200;
+  font-size: 30px;
+}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">
+		var user = '{{request.user}}'
+
+		function getToken(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken')
+
+    function getCookie(name) {
+      // Split cookie string and get all individual name=value pairs in an array
+      var cookieArr = document.cookie.split(";");
+
+      // Loop through the array elements
+      for(var i = 0; i < cookieArr.length; i++) {
+          var cookiePair = cookieArr[i].split("=");
+
+          /* Removing whitespace at the beginning of the cookie name
+          and compare it with the given string */
+          if(name == cookiePair[0].trim()) {
+              // Decode the cookie value and return
+              return decodeURIComponent(cookiePair[1]);
+            }
+      }
+
+      // Return null if not found
+      return null;
+      }
+      var cart = JSON.parse(getCookie('cart'))
+      
+      if(cart == undefined){
+        cart={}
+        console.log('Cart was created')
+        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+      }
+      console.log('Cart:', cart)
+	</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="{%static 'ddpowerzoomer.js'%}"></script>
+
+	<script>
+		jQuery(document).ready(function($){
+      $('.prod_img').click(function(){
+        var id = $(this).attr('id');
+        $('#pop_img_one_'+id).addpowerzoom({
+          defaultpower: 2,
+          powerrange: [2,5],
+          largeimage: null,
+          magnifiersize: [200,200]
+        });
+        $('#pop_img_two_'+id).addpowerzoom({
+          defaultpower: 2,
+          powerrange: [2,5],
+          largeimage: null,
+          magnifiersize: [200,200]
+        });
+        $('#pop_img_three_'+id).addpowerzoom({
+          defaultpower: 2,
+          powerrange: [2,5],
+          largeimage: null,
+          magnifiersize: [200,200]
+        });
+        $('#pop_img_four_'+id).addpowerzoom({
+          defaultpower: 2,
+          powerrange: [2,5],
+          largeimage: null,
+          magnifiersize: [200,200]
+        });
+      });
+ 			
+		});
+	</script>
+</head>
+
+<body>
+
+
+    {% block content %}{% endblock %}
+
+    <footer>
+      <div class="ft_flex">
+          <div class="ft_one">
+              <img src="{% static 'logo/Sparkle.png' %}" alt="Logo" class="ft_logo">
+              <ul class="social_links">
+                <li><a href="" class="sans ft_link"><i class="fab fa-facebook"></i>Facebook</a></li>
+                <li><a href="" class="sans ft_link"><i class="fab fa-instagram"></i>Instagram</a></li>
+                <li><a href="" class="sans ft_link"><i class="fab fa-pinterest"></i>Pinterest</a></li>
+              </ul>
+          </div>
+          <div class="ft_two">
+              <h4 class="ft_title serif">About Us</h4>
+              <ul class="about_links">
+                  <li><a href="" class="sans ft_link">Our Story</a></li>
+                  <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@thesparklee.com" class="sans ft_link" target="_blank">Contact</a></li>
+              </ul>
+          </div>
+          <div class="ft_three">
+              <h4 class="ft_title serif">Policies</h4>
+              <ul class="policy_links">
+                  <li><a href="" class="sans ft_link">Privacy Policy</a></li>
+                  <li><a href="" class="sans ft_link">Return and Refund Policy</a></li>
+              </ul>
+          </div>
+      </div>
+      <h5 class="sans copyright">&copy; The Sparkle Fashion Inc. | Designed by <a href="">Aniket Bamotra</a></h5>
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- New -->
+  <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+  {% comment %} <script type="text/javascript" src="{% static 'js/checkout.js' %}"></script> {% endcomment %}
+  
+</body>
+
+</html>

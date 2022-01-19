@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block content %}
+
+{% load cart %}
+{% load custom_filter %}
+<header id="d_header">
+    <nav>
+        <a href="/home" class="sans left_link">New Arrivals</a>
+		{% comment %} {{ if !request.user.is_authenticated }}
+		<a href="/login" class="sans right-link"><img src="{% static 'icons/light bag.svg' %}" alt="Shopping Bag" style="height: 1.8rem;"><h5 class="sans">3</h5></a>
+        {{ endif }} {% endcomment %}
+		<a href="/cart" class="sans right-link"><img src="{% static 'icons/light bag.svg' %}" alt="Shopping Bag" style="height: 1.8rem;"><h5 class="sans">{{num_items}}</h5></a>
+        {% comment %} <a href="#" class="sans right-link" id="profile"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
+        <!-- profile dropdown -->
+        <div class="dropdown" id="dd">
+            <ul>
+                <li class="dd_ele sans"><a href="/profile" class="dd_ele_link">Profile</a></li>
+                <li class="dd_ele sans"><a href="/orders" class="dd_ele_link">Orders</a></li>
+                <li class="dd_ele sans"><a href="/favorite" class="dd_ele_link">Favourites</a></li>
+                {% if request.session.customer %}
+                <li class="dd_ele sans" id="ls"><a href="/logout" class="dd_ele_link">Log Out</a></li>
+                {% else %}
+                <li class="dd_ele sans"><a href="/login" class="dd_ele_link">Login/Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div> {% endcomment %}
+        <!-- <div class="search__container right-link">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> -->
+    </nav>
+</header>
+<!-- body -->
+<section class="banner">
+	<div class="banner_container">
+		<img src="{% static 'images/tiles/homepage_cover.jpg' %}" alt=" Rings tile photo" class="banner_img">
+		<img src="{% static 'banner-title/Shop.svg' %}" alt="Rings written in script font" class="page_title">
+	</div>
+</section>
+
+<!-- filter -->
+
+<div class="product_grid">
+	<div class="pg_container">
+		<div class="filter_container">
+			<div class="filter_ele">
+				<h5 class="filter_title serif">Category</h5>
+				<ul>
+					<li class="f_list_item sans"><a href="/home">All Products</a>
+				    {% for category in categories %}
+				    <li class="f_list_item sans"><a href="/home?category={{category.id}}">{{category.name}}</a></li>
+					
+				    {% endfor %}
+                </ul>
+			</div>
+
+			{% comment %} <div class="filter_ele">
+				<h5 class="filter_title serif">Material</h5>
+				<ul>
+					<li class="f_list_item sans"><input id="alu" type="checkbox"><label for="alu">Aluminum</label></li>
+					<li class="f_list_item sans"><input id="brass" type="checkbox"><label for="brass">Brass</label></li>
+					<li class="f_list_item sans"><input id="bronze" type="checkbox"><label for="bronze">Bronze</label></li>
+					<li class="f_list_item sans"><input id="copper" type="checkbox"><label for="copper">Copper</label></li>
+					<li class="f_list_item sans"><input id="nickel" type="checkbox"><label for="nickel">Nickel Silver</label></li>
+					<li class="f_list_item sans"><input id="steel" type="checkbox"><label for="steel">Stainless Steel</label></li>
+					<li class="f_list_item sans"><input id="titanium" type="checkbox"><label for="titanium">Titanium</label></li>
+				</ul>
+			</div>
+			<div class="filter_ele">
+				<h5 class="filter_title serif">Color</h5>
+				<ul>
+					<li class="f_list_item sans"><input type="checkbox" id="red"><label for="red">Red</label></li>
+					<li class="f_list_item sans"><input type="checkbox" id="blue"><label for="blue">Blue</label></li>
+					<li class="f_list_item sans"><input type="checkbox" id="green"><label for="green">Green</label></li>
+					<li class="f_list_item sans"><input type="checkbox" id="gray"><label for="gray">Gray</label></li>
+					<li class="f_list_item sans"><input type="checkbox" id="black"><label for="black">Black</label></li>
+					<li class="f_list_item sans"><input type="checkbox" id="yellow"><label for="yellow">Yellow</label></li>
+					<li class="f_list_item sans"><input type="checkbox" id="purple"><label for="purple">Purple</label></li>
+				</ul>
+			</div> {% endcomment %}
+			{% comment %} <div class="filter_ele">
+				<h5 class="filter_title serif">Price</h5>
+				<ul>
+					<li class="f_list_item sans">Under $10</li>
+					<li class="f_list_item sans">$10 - $20</li>
+					<li class="f_list_item sans">$20 - $40</li>
+					<li class="f_list_item sans">$40 - $60</li>
+					<li class="f_list_item sans">$60 - $80</li>
+					<li class="f_list_item sans">$80 - $100</li>
+					<li class="f_list_item sans">Above $100</li>
+				</ul>
+			</div> {% endcomment %}
+		</div>
+		
+
+		<!-- all products -->
+		
+			<div  id='products' class="product_gallery">
+				{% for product in products %}	
+				<div class="product_card" id= "{{product.id}}">
+					<a href="#" class="img_link" ><img class="prod_img" id="{{product.id}}" src="{{product.image.url}}" alt="Card image cap"></a>
+						<p class="prod_name serif">{{product.name}}</p>
+						<p class="prod_price serif">{{product.price|currency}}</p>
+						<!-- {{product | is_in_cart:request.session.cart }} -->
+
+						<!-- changed -->
+						<div class="a_btn">
+							<button data-product={{product.id}} data-action="add" class="add_cart_btn update-cart" onclick="return alert('Item added to bag!')"><span id="plus" class="material-icons-outlined">add</span></button>
+						</div>
+						<!-- <button data-product="{{product.id}}" data-action="add" type="submit" class="add_cart_btn update-cart" value="Add"><span id="plus" class="material-icons-outlined">add</span></button> -->
+						{% comment %} <form action="/#{{product.id}}" method="POST" class="a_btn">
+							{% csrf_token %}
+							<button data-product ={{product.id}} data-action="add" type="submit" class="add_cart_btn update-cart" value="Add"><span id="plus" class="material-icons-outlined">add</span></button>
+							<input hidden type="text" name='product' value='{{product.id}}'>
+						</form> {% endcomment %}
+						{% comment %} <form action="/#{{product.id}}" method="POST" class="fav_btn">
+							{% csrf_token %}
+							<button type = "submit" value = "" class="material-icons-outlined">favorite</button>
+							<input hidden type="text" name='product' value='{{product.id}}'>
+						</form> {% endcomment %}
+				</div>
+				{% endfor %}
+			</div>
+			{% comment %} <div class="pagination_container">
+				<div class="pagination">
+					<a href="#" class="pagi_num_link sans material-icons">chevron_left</a>
+					<a href="#" class="pagi_num_link pagi_num pagi_num_select sans">1</a>
+					<a href="#" class="pagi_num_link pagi_num sans">2</a>
+					<a href="#" class="pagi_num_link pagi_num sans">3</a>
+					<a href="#" class="pagi_num_link pagi_num sans">4</a>
+					<a href="#" class="pagi_num_link pagi_num sans">5</a>
+					<a href="#" class="pagi_num_link sans material-icons">chevron_right</a>
+				</div>
+			</div> {% endcomment %}
+
+		
+	</div>
+</div>
+{% for product in products %}
+<section class="prod_view_popup" id="pop_{{product.id}}">
+	<div class="close_btn">
+		<button class="material-icons-outlined">close</button>
+	</div>
+    <div class="prod_popup_imgs">
+		<img src="{{product.image.url}}" alt="Ring 1 thumbnail image" id="pop_img_one_{{product.id}}" class="prod_popup_img">
+		<img src="{{product.image.url}}" alt="Ring 1 side image" id="pop_img_two_{{product.id}}">
+		<img src="{{product.image2.url}}" alt="Ring 1 top image" id="pop_img_three_{{product.id}}">
+		<img src="{{product.image3.url}}" alt="Ring 1 close up image" id="pop_img_four_{{product.id}}">
+	</div>
+	<div class="prod_popup_info">
+		<h6 class="prod_name serif">{{product.name}}</h6>
+		<p class="popup_prod_desc sans">{{product.description}}</p>
+
+		<h4 class="prod_price serif">{{product.price|currency}}</h4>
+		<form action="/#{{product.id}}" method="POST" class="cta">
+			{% csrf_token %}
+			<input type="submit" data-product={{product.id}} data-action="add" class="serif update-cart" value="Add to Bag"></input>
+			<input hidden type="text" name='product' value='{{product.id}}'>
+		</form>
+	</div>
+</section>
+{% endfor %}
+
+
+    <script>
+		// js for zoom images
+		jQuery(document).ready(function($){
+			// js for profile dropdown
+			$("#profile").mouseenter(function() {
+				$('#dd').addClass('drop_hover_enter');
+			});
+			$("#dd").mouseleave(function() {
+				$('#dd').removeClass('drop_hover_enter');
+			});
+			// js for popup
+
+			$('.prod_img').click(function(){
+				var id = $(this).attr('id');
+				console.log(id);
+				$('#'+id).click(function(){
+					$('#pop_'+id).addClass('open_popup');
+					console.log('pop_'+id);
+				});
+			})
+
+			$(".close_btn").click(function() {
+				$('.prod_view_popup').removeClass('open_popup');
+			});
+		});
+	</script>
+		
+
+		
+
+{% endblock %}

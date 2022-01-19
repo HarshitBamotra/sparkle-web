@@ -1,0 +1,144 @@
+{% extends "base.html" %} {% load static %}
+<!-- {% static 'images/about1.jpg' %} -->
+
+{% block content %}
+<style>
+  .mbi {
+    background-image: url("{% static 'images/tiles/homepage_cover.jpg' %}");
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .search__input {
+    width: 25vw;
+    padding: 0.8rem;
+    position: relative;
+    bottom: 0.5rem;
+    z-index: 10;
+    background-color: transparent;
+    transition: transform 250ms ease-in-out;
+    font-size: 1.8ch;
+    color: rgb(var(--light-color));
+    background-color: transparent;
+    background-image: url("{% static 'icons/light_search.svg' %}");
+    background-size: 1.5rem;
+    background-repeat: no-repeat;
+    background-position: 95% center;
+    border-radius: 50px;
+    border: 1px solid rgb(var(--light-color));
+    transition: all 250ms ease-in-out;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+</style>
+<header>
+  <nav>
+    <a href="/home" class="sans left_link">New Arrivals</a>
+    <a href="/cart" class="sans right-link"
+      ><img
+        src="{% static 'icons/light bag.svg' %}"
+        alt="Shopping Bag"
+        style="height: 1.8rem"
+    /></a>
+    {% comment %} <a href="/profile" class="sans right-link"
+      ><img
+        src="{% static 'icons/light profile.svg' %}"
+        alt="User Profile"
+        style="height: 1.8rem"
+    /></a> {% endcomment %}
+    {% comment %} <div class="search__container right-link">
+      <input class="search__input" type="text" placeholder="Search" />
+    </div> {% endcomment %}
+  </nav>
+</header>
+<section class="mbi">
+  <div class="logo_cta">
+    <img src="{% static 'logo/Logo.svg' %}" alt="Logo" class="m_logo" />
+    <div>
+      <a href="#cat_tiles" class="sn_btn sans"><span>Shop Now</span></a>
+    </div>
+  </div>
+</section>
+<section class="h_tiles" id="cat_tiles">
+  <a href="/home?category=1" class="tile_one tile_link"
+    ><img
+      src="{% static 'images/tiles/ring_tile.jpg' %}"
+      alt="Rings"
+      class="tiles"
+    />
+    <h3 class="tile_title serif">Rings</h3></a
+  >
+  <a href="/home?category=2" class="tile_two tile_link"
+    ><img
+      src="{% static 'images/tiles/necklace_tile.jpg' %}"
+      alt="Necklace"
+      class="tiles"
+    />
+    <h3 class="tile_title serif">Necklaces</h3></a
+  >
+  <a href="/home?category=3" class="tile_three tile_link"
+    ><img
+      src="{% static 'images/tiles/bracelate_tile.jpg' %}"
+      alt="Bracelete"
+      class="tiles"
+    />
+    <h3 class="tile_title serif">Bracelets</h3></a
+  >
+  <a href="/home?category=4" class="tile_four tile_link"
+    ><img
+      src="{% static 'images/tiles/earring_tile.jpg' %}"
+      alt="Earring"
+      class="tiles"
+    />
+    <h3 class="tile_title serif">Earrings</h3></a
+  >
+  <a href="/home?category=5" class="tile_five tile_link"
+    ><img
+      src="{% static 'images/tiles/mics_tile.jpg' %}"
+      alt="Mics"
+      class="tiles"
+    />
+    <h3 class="tile_title serif">Miscellaneous</h3></a
+  >
+  <a href="/home?category=6" class="tile_six tile_link"
+    ><img
+      src="{% static 'images/tiles/handicraft_tile.jpg' %}"
+      alt="Handicraft"
+      class="tiles"
+    />
+    <h3 class="tile_title serif">Handicrafts</h3></a
+  >
+</section>
+<section class="manifesto">
+  <div class="mani_flex_container">
+    <img
+      src="{% static 'images/tiles/manifesto.jpg' %}"
+      alt="An image of a necklace"
+      class="mani_img"
+    />
+    <div class="mani_para">
+      <img
+        src="{% static 'logo/Manifesto.svg' %}"
+        alt="Manifesto written in same font as logo"
+        id="mani_title"
+      />
+      <h4 class="serif mani_highlight_body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, rerum
+        deserunt minima officia minus voluptatum nulla ea nesciunt rem
+        architecto odio itaque est corporis at porro atque? Sequi, tempora
+        maxime!
+      </h4>
+      <p class="sans mani_body">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni officia
+        explicabo atque similique libero voluptates rem voluptatem eveniet
+        corporis debitis eos ullam, nesciunt delectus laborum facilis rerum,
+        magnam ad molestias.
+      </p>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

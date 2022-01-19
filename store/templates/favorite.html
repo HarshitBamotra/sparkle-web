@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% load cart %}
+{% load custom_filter %}
+<header id="d_header">
+  <nav>
+      <a href="/home" class="sans left_link">New Arrivals</a>
+      <a href="/cart" class="sans right-link"><img src="{% static 'icons/light bag.svg' %}" alt="Shopping Bag" style="height: 1.8rem;"></a>
+      <a href="#" class="sans right-link" id="profile"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
+      <!-- profile dropdown -->
+      <div class="dropdown" id="dd">
+          <ul>
+              <li class="dd_ele sans"><a href="/profile" class="dd_ele_link">Profile</a></li>
+              <li class="dd_ele sans"><a href="/orders" class="dd_ele_link">Orders</a></li>
+              <li class="dd_ele sans"><a href="/store" class="dd_ele_link">Favourites</a></li>
+              {% if request.session.customer %}
+              <li class="dd_ele sans" id="ls"><a href="/logout" class="dd_ele_link">Log Out</a></li>
+              {% else %}
+              <li class="dd_ele sans"><a href="/login" class="dd_ele_link">Login/Sign Up</a></li>
+              {% endif %}
+          </ul>
+      </div>
+      {% comment %} <div class="search__container right-link">
+          <input class="search__input" type="text" placeholder="Search">
+      </div> {% endcomment %}
+  </nav>
+</header>
+
+<section class="fav_banner">
+    <div class="banner_container">
+        <img src="{% static 'images/tiles/homepage_cover.jpg' %}" alt=" Rings tile photo" class="banner_img">
+        <img src="{% static 'banner-title/Favorite.svg' %}" alt="Rings written in script font" class="page_title cart_page_title">
+    </div>
+</section>
+
+<section class="fav_container">
+    <h4 class="fav_title sans">Favourite Items</h4>
+    <div class="fav">
+        <div class="fav_items_container">
+            {% for product in products %}
+            <div class="fav_item">
+                <img src="{% static 'images/tiles/bracelate_tile.jpg' %}" alt="Image of product" class="fav_item_img">
+                <div class="item_desc">
+                    <h5 class="fav_item_name serif">{{product.name}}</h5>
+                    <p class="fav_item_prop sans">{{product.description}}</p>
+                    <p class="item_id sans">as3565sd</p>
+                </div>
+                <h4 class="item_price serif">{{product.price|currency}}</h4>
+                <div class="fav_page_btn">
+                    <div class="a_btn">
+                        <button class="add_cart_btn"><span id="plus" class="material-icons-outlined">add</span></button>
+                    </div>
+                    <div class="delete_item_btn">
+                        <button class="material-icons-outlined">delete</button>
+                    </div>
+                </div>
+            </div>   
+            {% endfor %}         
+        </div>
+    </div>
+</section>

@@ -1,0 +1,257 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<header id="d_header">
+    <nav>
+        <a href="/store" class="sans left_link">New Arrivals</a>
+        <a href="/cart" class="sans right-link"><img src="{% static 'icons/light bag.svg' %}" alt="Shopping Bag" style="height: 1.8rem;"></a>
+        <a href="#" class="sans right-link" id="profile"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
+        <!-- profile dropdown -->
+        <div class="dropdown" id="dd">
+            <ul>
+                <li class="dd_ele sans"><a href="/profile" class="dd_ele_link">Profile</a></li>
+                <li class="dd_ele sans"><a href="/orders" class="dd_ele_link">Orders</a></li>
+                <li class="dd_ele sans"><a href="/store" class="dd_ele_link">Favourites</a></li>
+                {% if request.session.customer %}
+                <li class="dd_ele sans" id="ls"><a href="/logout" class="dd_ele_link">Log Out</a></li>
+                {% else %}
+                <li class="dd_ele sans"><a href="/login" class="dd_ele_link">Login/Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="search__container right-link">
+            <input class="search__input" type="text" placeholder="Search">
+        </div>
+    </nav>
+  </header>
+  
+<section class="prod_view">
+    <div class="prod_view_imgs">
+        <img src="{%static 'images/tiles/bracelate_tile.jpg'%}" alt="Ring 1 thumbnail image" id="img1">
+        <img src="{%static 'images/tiles/bracelate_tile.jpg'%}" alt="Ring 1 side image" id="img2">
+        <img src="{%static 'images/tiles/bracelate_tile.jpg'%}" alt="Ring 1 top image" id="img3">
+        <img src="{%static 'images/tiles/bracelate_tile.jpg'%}" alt="Ring 1 close up image" id="img4">
+    </div>
+    <div class="prod_info">
+        <h6 class="prod_name serif">Ring 1</h6>
+        <h4 class="prod_price serif"><span>$</span>22</h4>
+        <div class="rating">
+            <span class="material-icons star">star_rate</span>
+            <span class="material-icons star">star_rate</span>
+            <span class="material-icons star">star_rate</span>
+            <span class="material-icons star">star_half</span>
+            <span class="material-icons star">star_outline</span>
+            <span class="rating_number sans">(234)</span>
+        </div>
+        <p class="sans prod_descp">Ring, Silver, Titanium, 1.5cm dia.</p>
+        <div class="prod_variety color">
+            <label for="color" class="sans variety_label">Color</label>
+                <select name="color" id="color">
+                    <option value="Red">Red</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Green">Green</option>
+                  </select>
+        </div>
+        <div class="prod_variety material">
+            <label for="material" class="sans variety_label">Material</label>
+                <select name="material" id="material">
+                    <option value="Red">Red</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Green">Green</option>
+                  </select>
+        </div>
+
+        <a href="/cart" class="cta">
+            <h6 class="serif">Add to Bag</h6>
+        </a>
+    </div>
+
+    <!-- <div class="smlr_items">
+
+        <h6 class="sect_title sans" id="smlr_prod_title">Similar Products</h6>
+
+        <div class="product_card" id="prod_card1">
+            <a href="/homepage" class="img_link"><img class="prod_img" src="/images/tiles/bracelate_tile.jpg" alt=""></a>
+            <h6 class="prod_name serif">Ring 1</h6>
+            <p class="prod_price serif"><span>$</span>22</p>
+            <div class="a_btn">
+                <button class="add_cart_btn"><span id="plus" class="material-icons-outlined">add</span></button>
+            </div>
+            <div class="fav_btn">
+                <button class="material-icons-outlined">favorite</button>
+            </div>
+        </div>
+        <div class="product_card" id="prod_card2">
+            <a href="/homepage" class="img_link"><img class="prod_img" src="/images/tiles/bracelate_tile.jpg" alt=""></a>
+            <h6 class="prod_name serif">Ring 1</h6>
+            <p class="prod_price serif"><span>$</span>22</p>
+            <div class="a_btn">
+                <button class="add_cart_btn"><span id="plus" class="material-icons-outlined">add</span></button>
+            </div>
+            <div class="fav_btn">
+                <button class="material-icons-outlined">favorite</button>
+            </div>
+        </div>
+        <div class="product_card" id="prod_card3">
+            <a href="/homepage" class="img_link"><img class="prod_img" src="/images/tiles/bracelate_tile.jpg" alt=""></a>
+            <h6 class="prod_name serif">Ring 1</h6>
+            <p class="prod_price serif"><span>$</span>22</p>
+            <div class="a_btn">
+                <button class="add_cart_btn"><span id="plus" class="material-icons-outlined">add</span></button>
+            </div>
+            <div class="fav_btn">
+                <button class="material-icons-outlined">favorite</button>
+            </div>
+        </div>
+        <div class="product_card" id="prod_card4">
+            <a href="/homepage" class="img_link"><img class="prod_img" src="/images/tiles/bracelate_tile.jpg" alt=""></a>
+            <h6 class="prod_name serif">Ring 1</h6>
+            <p class="prod_price serif"><span>$</span>22</p>
+            <div class="a_btn">
+                <button class="add_cart_btn"><span id="plus" class="material-icons-outlined">add</span></button>
+            </div>
+            <div class="fav_btn">
+                <button class="material-icons-outlined">favorite</button>
+            </div>
+        </div>
+    </div> -->
+    <div class="reviews">
+        <h6 class="sect_title sans" id="review_title">Reviews and Rating</h6>
+        <div class="review_grid">
+            <div class="rating_card">
+                <h4 class="card_title serif">Product Rating</h4>
+                <div class="star_rating">
+                    <span class="material-icons star">star_rate</span>
+                    <span class="material-icons star">star_rate</span>
+                    <span class="material-icons star">star_rate</span>
+                    <span class="material-icons star">star_half</span>
+                    <span class="material-icons star">star_outline</span>
+                    <h6 class="rating_number sans">3.5 <span>out of 5</span></h6>
+                </div>
+                <p class="customer_numb sans">234 Customer Rated</p>
+                <!-- star 5 -->
+                <h4 class="star_number sans" id="s5s">5 star</h4>
+                <div class="bar" id="s5b"></div>
+                <h4 class="rating_percent sans" id="s5p">60%</h4>
+                <!-- star 4 -->
+                <h4 class="star_number sans" id="s4s">4 star</h4>
+                <div class="bar" id="s4b"></div>
+                <h4 class="rating_percent sans" id="s4p">15%</h4>
+                <!-- star 3 -->
+                <h4 class="star_number sans" id="s3s">3 star</h4>
+                <div class="bar" id="s3b"></div>
+                <h4 class="rating_percent sans" id="s3p">10%</h4>
+                <!-- star 2 -->
+                <h4 class="star_number sans" id="s2s">2 star</h4>
+                <div class="bar" id="s2b"></div>
+                <h4 class="rating_percent sans" id="s2p">5%</h4>
+                <!-- star 1 -->
+                <h4 class="star_number sans" id="s1s">1 star</h4>
+                <div class="bar" id="s1b"></div>
+                <h4 class="rating_percent sans" id="s1p">10%</h4>
+            </div>
+            <div class="review_rows">
+                <div class="review_card">
+                    <img src="/images/stock photos/img1.jpg" alt="Buyer photo" class="user_img">
+                    <h5 class="user_name serif">Lizzy Smith</h5>
+                    <h6 class="user_lctn sans">LA, USA</h6>
+                    <div class="user_star_rating">
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_outline</span>
+                    </div>
+                    <h5 class="review_title serif">This is a sample</h5>
+                    <p class="review_body sans">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati sunt odio totam optio officiis quam incidunt eaque natus saepe quibusdam ea iure magnam magni, laborum tempora provident ex quae esse.</p>
+                    <p class="purchase_date sans">31/1/2020</p>
+                    <p class="status sans">Verified Purchase <span class="material-icons">verified</span></p>
+                </div>
+                <div class="review_card">
+                    <img src="/images/stock photos/img1.jpg" alt="Buyer photo" class="user_img">
+                    <h5 class="user_name serif">Lizzy Smith</h5>
+                    <h6 class="user_lctn sans">LA, USA</h6>
+                    <div class="user_star_rating">
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_outline</span>
+                    </div>
+                    <h5 class="review_title serif">This is a sample</h5>
+                    <p class="review_body sans">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati sunt odio totam optio officiis quam incidunt eaque natus saepe quibusdam ea iure magnam magni, laborum tempora provident ex quae esse.</p>
+                    <p class="purchase_date sans">31/1/2020</p>
+                    <p class="status sans">Verified Purchase <span class="material-icons">verified</span></p>
+                </div>
+                <div class="review_card">
+                    <img src="/images/stock photos/img1.jpg" alt="Buyer photo" class="user_img">
+                    <h5 class="user_name serif">Lizzy Smith</h5>
+                    <h6 class="user_lctn sans">LA, USA</h6>
+                    <div class="user_star_rating">
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_outline</span>
+                    </div>
+                    <h5 class="review_title serif">This is a sample</h5>
+                    <p class="review_body sans">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati sunt odio totam optio officiis quam incidunt eaque natus saepe quibusdam ea iure magnam magni, laborum tempora provident ex quae esse.</p>
+                    <p class="purchase_date sans">31/1/2020</p>
+                    <p class="status sans">Verified Purchase <span class="material-icons">verified</span></p>
+                </div>
+                <div class="review_card">
+                    <img src="/images/stock photos/img1.jpg" alt="Buyer photo" class="user_img">
+                    <h5 class="user_name serif">Lizzy Smith</h5>
+                    <h6 class="user_lctn sans">LA, USA</h6>
+                    <div class="user_star_rating">
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_outline</span>
+                    </div>
+                    <h5 class="review_title serif">This is a sample</h5>
+                    <p class="review_body sans">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati sunt odio totam optio officiis quam incidunt eaque natus saepe quibusdam ea iure magnam magni, laborum tempora provident ex quae esse.</p>
+                    <p class="purchase_date sans">31/1/2020</p>
+                    <p class="status sans">Verified Purchase <span class="material-icons">verified</span></p>
+                </div>
+                <div class="review_card">
+                    <img src="/images/stock photos/img1.jpg" alt="Buyer photo" class="user_img">
+                    <h5 class="user_name serif">Lizzy Smith</h5>
+                    <h6 class="user_lctn sans">LA, USA</h6>
+                    <div class="user_star_rating">
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_rate</span>
+                        <span class="material-icons star">star_outline</span>
+                    </div>
+                    <h5 class="review_title serif">This is a sample</h5>
+                    <p class="review_body sans">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati sunt odio totam optio officiis quam incidunt eaque natus saepe quibusdam ea iure magnam magni, laborum tempora provident ex quae esse.</p>
+                    <p class="purchase_date sans">31/1/2020</p>
+                    <p class="status sans">Verified Purchase <span class="material-icons">verified</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    $("#profile").mouseenter(function() {
+        $('#dd').addClass('drop_hover_enter');
+    });
+    $("#dd").mouseleave(function() {
+        $('#dd').removeClass('drop_hover_enter');
+    });
+          
+</script>
+
+{% endblock %}

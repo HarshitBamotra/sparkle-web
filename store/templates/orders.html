@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% load cart %}
+{% load custom_filter %}
+
+<header id="d_header">
+    <nav>
+        <a href="/home" class="sans left_link">New Arrivals</a>
+        <a href="/cart" class="sans right-link"><img src="{% static 'icons/light bag.svg' %}" alt="Shopping Bag" style="height: 1.8rem;"></a>
+        <a href="#" class="sans right-link" id="profile"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
+        <!-- profile dropdown -->
+        <div class="dropdown" id="dd">
+            <ul>
+                <li class="dd_ele sans"><a href="/profile" class="dd_ele_link">Profile</a></li>
+                <li class="dd_ele sans"><a href="/orders" class="dd_ele_link">Orders</a></li>
+                <li class="dd_ele sans"><a href="/favorite" class="dd_ele_link">Favourites</a></li>
+                {% if request.session.customer %}
+                <li class="dd_ele sans" id="ls"><a href="/logout" class="dd_ele_link">Log Out</a></li>
+                {% else %}
+                <li class="dd_ele sans"><a href="/login" class="dd_ele_link">Login/Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% comment %} <div class="search__container right-link">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> {% endcomment %}
+    </nav>
+</header>
+
+
+<section class="banner">
+    <div class="banner_container" id="order_banner_container">
+        <img src="{% static 'images/tiles/homepage_cover.jpg' %}" alt=" Rings tile photo" class="banner_img">
+        <img src="{% static 'banner-title/Orders.svg' %}" alt="Rings written in script font" class="page_title" id="order_page_title">
+    </div>
+</section>
+
+<section class="order_container">
+    <h4 class="order_title sans">Your Previous Orders</h4>
+    <div class="order">
+        <div class="order_items_container">
+            {% for order in orders %}
+            <div class="order_item">
+                <img src="{{order.product.image.url}}" alt="Image of product" class="order_item_img">
+                <div class="item_desc">
+                    <h5 class="order_item_name serif">{{order.product.name}}</h5>
+                    <p class="order_item_prop sans">{{product.description}}</p>
+                    <h4 class="item_id sans">{{order.quantity}}</h4>
+                    <h4 class="item_id sans">{{ order.address }} </h4>
+                    <h4 class="item_id sans">{{ order.phone }} </h4>
+                    {% if order.status %}
+                    <p>
+                        <small class="badge badge-success">Completed</small>
+                        {%else%}
+                        <small class="badge badge-warning">Pending</small>
+                    </p>
+                    {% endif %}
+                    
+                </div>
+                <h4 class="item_price serif">{{order.price|currency}}</h4>
+                <p class="order_date sans">{{order.date}}</p>
+                <div class="order_page_btn">
+                    <!-- <div class="a_btn">
+                        <button class="add_cart_btn"><span id="plus" class="material-icons-outlined">add</span></button>
+                    </div>
+                    <div class="print_item_btn">
+                        <button class="material-icons">print</button>
+                    </div> -->
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $("#profile").mouseenter(function() {
+            $('#dd').addClass('drop_hover_enter');
+        });
+        $("#dd").mouseleave(function() {
+            $('#dd').removeClass('drop_hover_enter');
+        });
+              
+    </script>
+
+{% endblock %}

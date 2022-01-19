@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% load cart %}
+{% load custom_filter %}
+<header id="d_header">
+  <nav>
+      <a href="/home" class="sans left_link">New Arrivals</a>
+      <a href="/cart" class="sans right-link"><img src="{% static 'icons/light bag.svg' %}" alt="Shopping Bag" style="height: 1.8rem;"><h5 class="sans">{{order.get_cart_items}}</h5></a>
+      {% comment %} <a href="#" class="sans right-link" id="profile"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
+      <!-- profile dropdown -->
+      <div class="dropdown" id="dd">
+          <ul>
+              <li class="dd_ele sans"><a href="/profile" class="dd_ele_link">Profile</a></li>
+              <li class="dd_ele sans"><a href="/orders" class="dd_ele_link">Orders</a></li>
+              <li class="dd_ele sans"><a href="/store" class="dd_ele_link">Favourites</a></li>
+              {% if request.session.customer %}
+              <li class="dd_ele sans" id="ls"><a href="/logout" class="dd_ele_link">Log Out</a></li>
+              {% else %}
+              <li class="dd_ele sans"><a href="/login" class="dd_ele_link">Login/Sign Up</a></li>
+              {% endif %}
+          </ul>
+      </div> {% endcomment %}
+      {% comment %} <div class="search__container right-link">
+          <input class="search__input" type="text" placeholder="Search">
+      </div> {% endcomment %}
+  </nav>
+</header>
+
+<section class="cart_banner">
+  <div class="banner_container">
+      <img src="{% static 'images/tiles/homepage_cover.jpg' %}" alt=" Rings tile photo" class="banner_img">
+      <img src="{% static 'banner-title/Cart.svg' %}" alt="Rings written in script font" class="page_title cart_page_title">
+  </div>
+</section>
+
+
+                                                            <!-- CART ITEMS -->
+
+<section class="cart_container">
+  <h4 class="cart_title sans">Cart Items</h4>
+
+  <div class="box-element">
+
+    {% comment %} <a  class="btn btn-outline-dark" href="{% url 'index' %}">&#x2190; Continue Shopping</a> {% endcomment %}
+
+    {% comment %} <br>
+    <br> {% endcomment %}
+    <table class="table">
+        <tr>
+            {% comment %} <th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th> {% endcomment %}
+            {% comment %} <th>
+                <a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+            </th> {% endcomment %}
+        </tr>
+    </table>
+
+</div>
+  {% comment %} <section class="cart_details">
+    <div class="details_container">
+        <p  Items: {{order.get_cart_items}}></p>
+        <br>
+        <p Total: {{order.get_cart_total}}></p>
+        <br>
+    </div>
+</section> {% endcomment %}
+
+    <div class="cart">
+      <div class="cart_items_container">
+          
+        {% for item in items %}
+        
+        <div class="cart_items">
+         <img src="{{item.product.image.url}}" alt="" class="cart_item_img">
+           <div class="item_desc">
+               <h5 class="cart_item_name serif">{{item.product.name}}</h5>
+               <p class="cart_item_prop sans">{{item.product.description}}</p>
+               <p class="item_id sans">Price per piece: {{item.product.price|currency}}</p>
+               {% comment %} <p class="item_id sans">{{item.quantity}}</p> {% endcomment %}
+               {% comment %} <p class="item_id sans">{{item.get_total}}</p> {% endcomment %}
+               {% comment %} <p class="item_id sans" Items: {{order.get_cart_items}}></p> {% endcomment %}
+           </div>
+           <div class="quantity buttons_added item_qnty">
+             <label class="sans qnty_label">Quantity</label><br>
+             <input data-product={{item.product.id}} data-action="remove" type="button" value="-" class="minus update-cart">
+             <input type="number" step="1" min="1" max="5" name="quantity" value="{{item.quantity}}" title="Qty" class="input-text qty text sans" size="4" pattern="" inputmode="">
+             <input data-product={{item.product.id}} data-action="add" type="button" value="+" class="plus update-cart">
+            </div>
+           <!-- <div class="item_qnty">
+               <label for="qnty" class="sans qnty_label">Quantity</label>
+               <h3>{{product|cart_quantity:request.session.cart}}</h3>
+           </div> -->
+           <h4 class="item_price serif"><span>${{item.get_total}}</span></h4>
+           <!-- <h4 class="item_price2 serif">$<span>{{product|price_total:request.session.cart|currency}}</span></h4> -->
+           {% comment %} <div class="cart_btn">
+               <div class="save_item_btn">
+                   <button class="material-icons-outlined">favorite</button>
+               </div>
+                <div class="delete_item_btn update-cart">
+                 <button data-product={{item.product.id}} data-action="delete" class="material-icons-outlined update-cart" ><a href="#"  onclick="return confirm('Do you really want to remove product?')">delete</a></button>
+               </div>
+           </div> {% endcomment %}
+       </div> 
+       
+       {% endfor %} 
+
+    </div>
+
+
+
+        
+    <form class="price_container" >
+            
+        <h3 class="recipt_title serif">Your Order</h3>
+        <h5 class="sub_total sans">Sub-total: </h5><h5 class="sub_total_p sans"><span>${{order.get_cart_total|floatformat:2}}</span></h5>
+        <!-- <h5 class="discount sans">Discount:</h5><h5 class="discount_p sans"><span>64.40</span></h5> -->
+        <div class="dlvry">
+        <h5 class="sans">Shipping:</h5>
+        </div>
+        <h5 class="dlvry_p sans">Free Delivery</h5>
+        <h5 class="vat sans">Tax (8.8%):</h5><h5 class="vat_p sans"><span>${{order.get_cart_tax|floatformat:2}}</span></h5>
+        <h5 class="total sans">Total:</h5><h5 class="total_p sans"><span>${{order.get_cart_final_total|floatformat:2}}</span></h5>
+        
+        <!-- {% comment %} <div id="paypal-button-container" class="pay_btn"></div> {% endcomment %} -->
+
+        <a href="/checkout" class="cta" id="cts"> 
+			<h6 class="serif" value="Continue to Checkout">Continue to Checkout</h6>
+		</a>
+    </form>
+</section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+      $("#profile").mouseenter(function() {
+          $('#dd').addClass('drop_hover_enter');
+      });
+      $("#dd").mouseleave(function() {
+          $('#dd').removeClass('drop_hover_enter');
+      });
+      $('.update-cart').click(function() {
+        location.reload();
+    });
+            
+  </script>
+
+
+  <script>
+      {% comment %} js for quantity btn {% endcomment %}
+      function wcqib_refresh_quantity_increments() {
+    jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function(a, b) {
+        var c = jQuery(b);
+        c.addClass("buttons_added"), c.children().first().before('<input type="button" value="-" class="minus" />'), c.children().last().after('<input type="button" value="+" class="plus" />')
+    });
+}
+String.prototype.getDecimals || (String.prototype.getDecimals = function() {
+    var a = this,
+        b = ("" + a).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+    return b ? Math.max(0, (b[1] ? b[1].length : 0) - (b[2] ? +b[2] : 0)) : 0
+}), jQuery(document).ready(function() {
+    wcqib_refresh_quantity_increments()
+}), jQuery(document).on("updated_wc_div", function() {
+    wcqib_refresh_quantity_increments()
+}), jQuery(document).on("click", ".plus, .minus", function() {
+    var a = jQuery(this).closest(".quantity").find(".qty"),
+        b = parseFloat(a.val()),
+        c = parseFloat(a.attr("max")),
+        d = parseFloat(a.attr("min")),
+        e = a.attr("step");
+    b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
+});
+              
+    </script>
+  </script>
+  <script src="https://www.paypal.com/sdk/js?client-id=Ad1sbmsltKEIiEuBT42h6EN0qb0vxbaL-lhTI4nlH8K79P2sCLHiQd5SHKnta0pBHyttbiQmdpLgD09v&currency=USD"></script>
+  <script>
+    // Render the PayPal button into #paypal-button-container
+    var amt2= "{{product.price}}";
+    var amt = 20;
+    //console.log(amt2);
+    paypal.Buttons({
+
+      style: {
+                color:  'blue',
+                shape:  'pill',
+                label:  'pay',
+                height: 40
+            },
+
+        // Set up the transaction
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: amt
+                    }
+                }]
+            });
+        },
+
+        // Finalize the transaction
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData) {
+                // Successful capture! For demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                var transaction = orderData.purchase_units[0].payments.captures[0];
+                alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+                // Replace the above to show a success message within this page, e.g.
+                // const element = document.getElementById('paypal-button-container');
+                // element.innerHTML = '';
+                // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                // Or go to another URL:  actions.redirect('thank_you.html');
+            });
+        }
+
+
+    }).render('#paypal-button-container');
+</script>
+
+{% endblock %}
