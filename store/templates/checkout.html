@@ -31,7 +31,7 @@
 <section class="banner">
 	<div class="banner_container">
 		<img src="{% static 'images/tiles/homepage_cover.jpg' %}" alt=" Rings tile photo" class="banner_img">
-		<img src="{% static 'banner-title/checkout.svg' %}" alt="Rings written in script font" class="page_title">
+		<img src="{% static 'banner-title/Checkout.svg' %}" alt="Rings written in script font" class="page_title">
 	</div>
 </section>
 
@@ -181,7 +181,6 @@
         form.addEventListener('submit', function(e){
             e.preventDefault()
             console.log('Form Submitted...')
-            document.getElementById('payment-info').classList.remove("hidden");
         })
 
         document.getElementById('make-payment').addEventListener('click', function(e){
