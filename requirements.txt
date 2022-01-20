@@ -1,6 +1,5 @@
 asgiref==3.4.1
 astroid==2.4.1
-awscli==1.22.39
 awsebcli==3.20.2
 botocore==1.21.0
 cement==2.8.2
