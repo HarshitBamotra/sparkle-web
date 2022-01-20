@@ -9,7 +9,6 @@
       <a href="/home" class="sans left_link">New Arrivals</a>
       <a href="/cart" class="sans right-link"><img src="{% static 'icons/light bag.svg' %}" alt="Shopping Bag" style="height: 1.8rem;"><h5 class="sans">{{order.get_cart_items}}</h5></a>
       {% comment %} <a href="#" class="sans right-link" id="profile"><img src="{% static 'icons/light profile.svg' %}" alt="User Profile" style="height: 1.8rem;"></a>
-      <!-- profile dropdown -->
       <div class="dropdown" id="dd">
           <ul>
               <li class="dd_ele sans"><a href="/profile" class="dd_ele_link">Profile</a></li>
@@ -87,12 +86,7 @@
              <input type="number" step="1" min="1" max="5" name="quantity" value="{{item.quantity}}" title="Qty" class="input-text qty text sans" size="4" pattern="" inputmode="">
              <input data-product={{item.product.id}} data-action="add" type="button" value="+" class="plus update-cart">
             </div>
-           <!-- <div class="item_qnty">
-               <label for="qnty" class="sans qnty_label">Quantity</label>
-               <h3>{{product|cart_quantity:request.session.cart}}</h3>
-           </div> -->
            <h4 class="item_price serif"><span>${{item.get_total}}</span></h4>
-           <!-- <h4 class="item_price2 serif">$<span>{{product|price_total:request.session.cart|currency}}</span></h4> -->
            {% comment %} <div class="cart_btn">
                <div class="save_item_btn">
                    <button class="material-icons-outlined">favorite</button>
@@ -114,15 +108,12 @@
             
         <h3 class="recipt_title serif">Your Order</h3>
         <h5 class="sub_total sans">Sub-total: </h5><h5 class="sub_total_p sans"><span>${{order.get_cart_total|floatformat:2}}</span></h5>
-        <!-- <h5 class="discount sans">Discount:</h5><h5 class="discount_p sans"><span>64.40</span></h5> -->
         <div class="dlvry">
         <h5 class="sans">Shipping:</h5>
         </div>
         <h5 class="dlvry_p sans">Free Delivery</h5>
         <h5 class="vat sans">Tax (8.8%):</h5><h5 class="vat_p sans"><span>${{order.get_cart_tax|floatformat:2}}</span></h5>
         <h5 class="total sans">Total:</h5><h5 class="total_p sans"><span>${{order.get_cart_final_total|floatformat:2}}</span></h5>
-        
-        <!-- {% comment %} <div id="paypal-button-container" class="pay_btn"></div> {% endcomment %} -->
 
         <a href="/checkout" class="cta" id="cts"> 
 			<h6 class="serif" value="Continue to Checkout">Continue to Checkout</h6>
