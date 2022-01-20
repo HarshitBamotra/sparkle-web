@@ -137,7 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = 'static'
+STATIC_ROOT = 'static'
 # AWS_ACCESS_KEY_ID = ('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = ('AWS_SECRET_ACCESS_KEY')
 # AWS_STORAGE_BUCKET_NAME = ('AWS_STORAGE_BUCKET_NAME')
