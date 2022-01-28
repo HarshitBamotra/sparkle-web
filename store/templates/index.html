@@ -39,10 +39,21 @@
 </section>
 
 <!-- filter -->
+<button id="cat_slider" class="serif">Categories</button>
+
+<div id="cat-pop-wrap">
+	<i class="fas fa-times serif" id="close-icon"></i>
+	<ul id="cat-pop">
+		<li class="serif"><a href="/home">All Products</a></li>
+		{% for category in categories %}
+		<li class="serif"><a href="/home?category={{category.id}}">{{category.name}}</a></li>
+		{% endfor %}
+	</ul>
+</div>
 
 <div class="product_grid">
 	<div class="pg_container">
-		<div class="filter_container">
+		{% comment %} <div class="filter_container">
 			<div class="filter_ele">
 				<h5 class="filter_title serif">Category</h5>
 				<ul>
@@ -52,7 +63,7 @@
 					
 				    {% endfor %}
                 </ul>
-			</div>
+			</div> {% endcomment %}
 
 			{% comment %} <div class="filter_ele">
 				<h5 class="filter_title serif">Material</h5>
@@ -103,7 +114,7 @@
 						<p class="prod_price serif">{{product.price|currency}}</p>
 						<!-- {{product | is_in_cart:request.session.cart }} -->
 
-						<!-- changed -->
+						<!-- changed -->   
 						<div class="a_btn">
 							<button data-product={{product.id}} data-action="add" class="add_cart_btn update-cart" onclick="return alert('Item added to bag!')"><span id="plus" class="material-icons-outlined">add</span></button>
 						</div>
@@ -181,10 +192,16 @@
 					$('#pop_'+id).addClass('open_popup');
 					console.log('pop_'+id);
 				});
-			})
+			});
 
 			$(".close_btn").click(function() {
 				$('.prod_view_popup').removeClass('open_popup');
+			});
+			$("#cat_slider").click(function() {
+				$('#cat-pop-wrap').addClass('slide-in');
+			});
+			$("#close-icon").click(function() {
+				$('#cat-pop-wrap').removeClass('slide-in');
 			});
 		});
 	</script>
