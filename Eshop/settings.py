@@ -73,8 +73,6 @@ WSGI_APPLICATION = 'Eshop.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-# if 'RDS_DB_NAME' in os.environ:
-import os
 
 if 'RDS_HOSTNAME' in os.environ:
     DATABASES = {
@@ -98,6 +96,18 @@ else:
             'PORT': '',
         }
     }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'sparkle-db',
+#         'USER': 'ShaliniAdmin',
+#         'PASSWORD': 'Shalini123',
+#         'HOST': 'aanzsapou20ljq.cgqkzzscyaid.us-west-2.rds.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
+
+
 # else:
     # DATABASES = {
     #     'default': {
