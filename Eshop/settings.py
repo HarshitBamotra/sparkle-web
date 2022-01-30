@@ -99,11 +99,11 @@ else:
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'sparkle-db',
-#         'USER': 'ShaliniAdmin',
-#         'PASSWORD': 'Shalini123',
-#         'HOST': 'aanzsapou20ljq.cgqkzzscyaid.us-west-2.rds.amazonaws.com',
-#         'PORT': '5432',
+#         'NAME': 'test-db1',
+#         'USER': 'postgres',
+#         'PASSWORD': 'schoollife',
+#         'HOST': 'localhost',
+#         'PORT': '',
 #     }
 # }
 
