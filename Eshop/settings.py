@@ -86,26 +86,26 @@ WSGI_APPLICATION = 'Eshop.wsgi.application'
 #         }
 #     }
 # else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': 'sparkle-db1.0',
-#             'USER': 'postgres',
-#             'PASSWORD': 'schoollife',
-#             'HOST': 'localhost',
-#             'PORT': '',
-#         }
-#     }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ebdb',
-        'USER': 'ShaliniAdmin',
-        'PASSWORD': 'Shalini123',
-        'HOST': 'aa8pcn27d97yjj.cgqkzzscyaid.us-west-2.rds.amazonaws.com',
-        'PORT': '5432',
+        'NAME': 'sparkle-ldb1',
+        'USER': 'postgres',
+        'PASSWORD': 'schoollife',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'ebdb',
+#         'USER': 'ShaliniAdmin',
+#         'PASSWORD': 'Shalini123',
+#         'HOST': 'aa8pcn27d97yjj.cgqkzzscyaid.us-west-2.rds.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # else:

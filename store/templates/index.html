@@ -150,7 +150,8 @@
 {% for product in products %}
 <section class="prod_view_popup" id="pop_{{product.id}}">
 	<div class="close_btn">
-		<button class="material-icons-outlined">close</button>
+		{% comment %} <button class="material-icons-outlined">close</button> {% endcomment %}
+		<i class="fas fa-times serif" id="close-icon"></i>
 	</div>
     <div class="prod_popup_imgs">
 		<img src="{{product.image.url}}" alt="Ring 1 thumbnail image" id="pop_img_one_{{product.id}}" class="prod_popup_img">
@@ -161,8 +162,7 @@
 	<div class="prod_popup_info">
 		<h6 class="prod_name serif">{{product.name}}</h6>
 		<p class="popup_prod_desc sans">{{product.description}}</p>
-
-		<h4 class="prod_price serif">{{product.price|currency}}</h4>
+		<h4 class="prod_price serif"><span class="sans">Price <br></span>{{product.price|currency}}</h4>
 		<form action="/#{{product.id}}" method="POST" class="cta">
 			{% csrf_token %}
 			<input type="submit" data-product={{product.id}} data-action="add" class="serif update-cart" value="Add to Bag"></input>
