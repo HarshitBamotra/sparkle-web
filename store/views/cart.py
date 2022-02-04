@@ -13,26 +13,6 @@ import json
 import datetime
 from store.utils import cookieCart, cartData, guestOrder
 
-# class Cart(View):
-#     pass
-#     def get(self , request):
-#         pass
-        # ids = list(request.session.get('cart').keys())
-        # products = Product.get_products_by_id(ids)
-        
-        # print(products)
-        # total=0
-        # for product in products:  
-        #     # for id in ids:
-        #     #     if int(id) == product.id:
-        #     #         print(product.id)
-        #     total += product.price
-        # print (total)
-        # context = {
-        #     'products': products,
-        #     'total':total,
-        # }
-        # return render(request , 'cart.html' , context )
 
 def delete_p(request,pid):
     # cart = Product.objects.get(id=pid)
@@ -54,19 +34,7 @@ def cart(request):
 
     context= {'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, 'cart.html', context)
-# def cart(request):
 
-# 	if request.user.is_authenticated:
-# 		customer = request.user.customer
-# 		order, created = Order.objects.get_or_create(customer=customer, status=False)
-# 		items = order.orderitem_set.all()
-#     if not(request.user.is_authenticated):
-#         items=[]
-#         order={'i':0, 'o':0}
-
-	
-# 	context = {'items':items, 'order':order }
-# 	return render(request, 'cart.html', context)
 
 def updateItem(request):
         data = json.loads(request.body)
@@ -93,17 +61,7 @@ def updateItem(request):
             orderitem.delete()
 
         orderitem.save()
-        # orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
         
-        # if action == 'add':
-        # 	orderItem.quantity = (orderItem.quantity + 1)
-        # elif action == 'remove':
-        # 	orderItem.quantity = (orderItem.quantity - 1)
-
-        # orderItem.save()
-
-        # if orderItem.quantity <= 0:
-        # 	orderItem.delete()
         return JsonResponse('Item was added', safe=False)
 
 
