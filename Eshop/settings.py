@@ -25,7 +25,7 @@ SECRET_KEY = '^_g%33qd(g8bjc+*40&uh(ptgkb$&-*+0!i3$lu7xj1u166cbb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sparkle2-env.eba-sdmjba65.us-west-2.elasticbeanstalk.com', 'awseb-e-h-AWSEBLoa-UPA5AQYUY4RK-819457930.us-west-2.elb.amazonaws.com', '127.0.0.1', 'www.thesparklee.com', 'thesparklee.com']
+ALLOWED_HOSTS = ['sparkle2-env.eba-sdmjba65.us-west-2.elasticbeanstalk.com', 'awseb-e-h-AWSEBLoa-2N09F028MOXM-2139353721.us-west-2.elb.amazonaws.com', '127.0.0.1', 'www.thesparklee.com', 'thesparklee.com']
 
 
 # Application definition
