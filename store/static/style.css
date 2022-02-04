@@ -449,10 +449,10 @@ footer a {
 }
 @media only screen and (max-width: 425px) {
   .serif {
-    font-size: 1.8ch;
+    font-size: 2ch;
   }
   .sans {
-    font-size: 1.3ch;
+    font-size: 1.7ch;
   }
   html{
     overflow-x: hidden;
@@ -1673,7 +1673,6 @@ footer a {
   font-size: 3ch;
   letter-spacing: 0.2rem;
 }
-
 /* Round Button Styling */
 .cart_btn,
 .fav_page_btn,
@@ -1877,7 +1876,72 @@ footer a {
   grid-area: cpur;
 }
 
+@media (max-width: 1050px){
+  .cta h6{
+    letter-spacing: 1px;
+    font-size: 2ch;
+  }
+  .cart_container{
+    padding: 1rem 2rem;
+  }
+  .cart{
+    grid-gap: .5rem;
+  }
+  .price_container{
+    padding: 2rem 1.5rem;
+    grid-template-areas: 
+    "rt rt rt rt"
+    "rst rst rstp rstp"
+    "odt odt odtp odtp"
+    "ot ot otp otp"
+    "ort ort ortp ortp"
+    "cpur cpur cpur cpur";
+  }
+  .dlvry_p{
+    text-align: right;
+  }
+}
+@media(max-width: 768px) {
+  .cart_container{
+    padding: 1rem 2rem;
+  }
+  .cart{
+    grid-template-areas:
+    "cic cic cic cic cic cic cic cic cic"
+    "tca tca tca tca tca tca tca tca tca";
+    grid-gap: 2rem;
+  }
+}
+@media (max-width: 425px) {
+  .cart_container{
+    padding: 1rem 1rem;
+  }
+  .cart_items{
+    grid-template-areas: 
+    "cii cii cii cii"
+    "cii cii cii cii"
+    "cid cid cid cid"
+    "ip ip ip oa";
+    border-radius: 13px;
+  }
+  .cart_item_img{
+    border-radius: 13px;
+  }
+  .item_desc{
+    margin-left: 0;
+  }
+  .item_price{
+    margin-left: 0;
+  }
+  
+}
+
 /* Checkout page start */
+
+#ship_title{
+  font-size: 3.5ch;
+  letter-spacing: .2rem;
+}
 .add_section{
   display: grid;
   grid-template-columns: repeat(9, 1fr);
@@ -2063,11 +2127,30 @@ footer a {
 
 #paypal-button-container{
   display: none;
+  grid-area: cpur;
 }
 .show{
   display: block !important;
 }
+@media (max-width: 1050px){
+  .add_section{
+    padding: 1rem;
+  }
+}
+@media (max-width: 768px){
+  .add_pop{
+    grid-area: 2/1/3/10;
+  }
+  .checkout_page_pc{
+    grid-area: 3/1/4/10;
+  }
 
+}
+@media (max-width: 425px){
+  .add_section{
+    padding: 1rem;
+  }
+}
 
 /* login and sign up start */
 #page_cover {

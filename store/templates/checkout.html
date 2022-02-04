@@ -36,7 +36,7 @@
 </section>
 
 <section class="add_section">
-    <h3 class="serif">Shipping Details</h3>
+    <h3 class="serif" id="ship_title">Shipping Details</h3>
    
     <form class="add_pop" method="post" id="form">
         {% csrf_token %}
@@ -92,7 +92,7 @@
           <h5 class="sans">Shipping:</h5>
       </div>
       <h5 class="dlvry_p sans">Free Delivery</h5>
-      <h5 class="vat sans">Tax (8.8%):</h5><h5 class="vat_p sans"><span>${{order.get_cart_tax|floatformat:2}}</span></h5>
+      <h5 class="vat sans">Tax:</h5><h5 class="vat_p sans"><span>${{order.get_cart_tax|floatformat:2}}</span></h5>
       <h5 class="total sans">Total:</h5><h5 class="total_p sans"><span>${{order.get_cart_final_total|floatformat:2}}</span></h5>
       
        <div id="paypal-button-container" class="pay_btn"></div>
