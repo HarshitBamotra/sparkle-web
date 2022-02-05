@@ -104,11 +104,10 @@ else:
 #         'NAME': 'ebdb',
 #         'USER': 'ShaliniAdmin',
 #         'PASSWORD': 'Shalini123',
-#         'HOST': 'aa8pcn27d97yjj.cgqkzzscyaid.us-west-2.rds.amazonaws.com',
+#         'HOST': 'aa1vuawwllnmqmm.cgqkzzscyaid.us-west-2.rds.amazonaws.com',
 #         'PORT': '5432',
 #     }
 # }
-
 
 # else:
     # DATABASES = {
